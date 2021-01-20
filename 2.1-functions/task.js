@@ -14,6 +14,7 @@ else if (D > 0) {
   return { D: D, roots: [x1, x2]};
   }
 };
+
 function showSolutionsMessage(a,b,c) {
   let result = getSolutions(a,b,c);
   alert(`Вычисляем корни квадратного уравнения ${a}x² + ${b}x + ${c}.`);
@@ -59,3 +60,26 @@ function getAverageMark(marks) {
   };
   return +(amount/marks.length);
 };
+
+
+function getPersonData(secretData) {
+  let personData = {};
+  let code = [];
+  let value;
+  for (let prop in secretData) {
+    value = secretData[prop];
+    code.push(value);
+  };
+  personData["first name"] = getDecodedValue(code[0]);
+  personData["last name"] = getDecodedValue(code[1]);
+  return personData;
+};
+
+function getDecodedValue(secret) {
+  if (secret == 0) {
+    return 'Родриго';
+  }
+  else if (secret == 1) {
+    return 'Эмильо';
+  };
+}
