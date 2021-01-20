@@ -59,9 +59,3 @@ function getAverageMark(marks) {
   };
   return +(amount/marks.length);
 };
-
-getAverageScore({
-  physics: [4,4,4,5],
-  math: [3,5,4],
-  history: [2,3,4]
-});
