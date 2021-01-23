@@ -7,8 +7,8 @@ function parseCount(number) {
 };
 
 function validateCount(number) {
-try { let answer = parseCount(number);
-  return answer;
+try {
+  return parseCount(number);
 } catch(e) {
 return e;
 };
@@ -35,22 +35,18 @@ class Triangle {
   };
 };
 
-class errorTriangle {
-  getPerimeter() {
-    return "Ошибка! Треугольник не существует";
-  };
-  getArea() {
-    return "Ошибка! Треугольник не существует";
-  };
-};
-
 function getTriangle(a,b,c) {
   try {
     return new Triangle(a,b,c);
   } catch(e) { 
-    return new errorTriangle;
+    return {
+      getPerimeter() {
+        return "Ошибка! Треугольник не существует";
+      },
+      getArea() {
+        return "Ошибка! Треугольник не существует";
+      }
+    };
   };
 };
-
-
 
