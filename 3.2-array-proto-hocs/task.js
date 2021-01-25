@@ -20,9 +20,24 @@ function compareArrays(arr1, arr2) {
 
 function memorize(fn, limit) {
 const memory = [];
-////
-////
-  return fn(...args);
+return (...args) => {
+  if(memory.find(elem => compareArrays(elem.args, args))) {
+    const findedOperation = memory.find(elem => compareArrays(elem.args, args));
+    return findedOperation.result;
+  } else {
+  const result = fn(...args);
+  memory.push({args: args, result: result});
+  if (memory.length > limit) {
+    memory.shift();
+  };
+  return result;}
+}
 };
+
 const mSum = memorize(sum, 5);
+console.log(mSum(3,4,5));
+console.log(mSum(3,5,5));
+console.log(mSum(3,6,7));
+console.log(mSum(3,4,5));
+
 
