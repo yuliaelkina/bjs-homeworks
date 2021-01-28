@@ -12,9 +12,7 @@ function sum(...args) {
 };
 
 function compareArrays(arr1, arr2) {
-  if(arr1.length === arr2.length && arr1.every((elem, ind) => elem === arr2[ind])) {
-  return true;
-} else {return false;};
+ return arr1.length === arr2.length && arr1.every((elem, ind) => elem === arr2[ind]);
 };
 
 function memorize(fn, limit) {
