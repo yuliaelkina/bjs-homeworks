@@ -2,7 +2,7 @@ class AlarmClock {
       
   constructor() {
     this.alarmCollection = [];    
-    this.timerId;
+    this.timerId = null;
   }
 
   addClock(time, fn, id) {
@@ -16,7 +16,13 @@ class AlarmClock {
   };
 
   removeClock(id) {
-    return this.alarmCollection.delete(this.alarmCollection.filter(elem => elem.id == id));
+    let elemByIdIndex;
+    const elemById = this.alarmCollection.filter((elem, ind) => {
+      if(elem.id == id) {
+      elemByIdIndex = ind;
+    };
+  });
+    return this.alarmCollection.splice(elemByIdIndex, 1);
   };
 
   getCurrentFormattedTime() {
@@ -27,11 +33,19 @@ class AlarmClock {
   };
 
   start() {
-
+    if (this.timerId == null) {
+      const isAlarm = () => {
+        this.alarmCollection.forEach(elem => this.checkClock(elem));
+      };
+      this.timerId = setInterval(isAlarm, 30000);
+    }
   };
 
   stop() {
-
+    if (this.timerId !== null) {
+      clearInterval(this.timerId);
+      this.timerId = null;
+  };
   };
 
   printAlarms() {
@@ -40,7 +54,14 @@ class AlarmClock {
   };
 
   clearAlarms() {
+    stop();
+    this.alarmCollection.splice(0, this.alarmCollection.length);
+  };
 
+  checkClock(alarm) {
+    if (alarm.time == getCurrentFormattedTime()) {
+      return fn;
+    }
   };
 };
 
