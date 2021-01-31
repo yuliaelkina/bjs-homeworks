@@ -54,13 +54,13 @@ class AlarmClock {
   };
 
   clearAlarms() {
-    stop();
+    this.stop();
     this.alarmCollection.splice(0, this.alarmCollection.length);
   };
 
   checkClock(alarm) {
-    if (alarm.time == getCurrentFormattedTime()) {
-      return fn;
+    if (alarm.time == this.getCurrentFormattedTime()) {
+      return alarm.callback();
     }
   };
 };
